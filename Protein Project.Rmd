@@ -1,0 +1,89 @@
+---
+title: "Protein Project"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Libraries
+
+This
+
+
+
+```{r libraries}
+library(plyr)
+library(dplyr)
+
+
+```
+
+## WwPDB Pull
+
+a
+
+```{r Pull}
+
+
+
+```
+
+## Data Cleaning
+
+
+
+```{r Cleaning}
+
+#Load the data
+dirtydata <- na.omit(cif)
+tocluster<- data.frame(ProteinName=character(),AAA=character(),AAC=integer(),stringsAsFactors=FALSE)
+loopvar<- data.frame(AAA=character(),AAC=integer())
+
+#Clean it up
+
+for (i in 1:length(dirtydata)) {
+
+  if (dirtydata[i]=='NULL'){
+    
+  }
+  
+  else{
+
+#takes the dataframe in the list and adds the row that is the most abundant amino acid and how many there are of them 
+cleanerdata <- ldply (dirtydata[i], data.frame)
+var <- cleanerdata %>%  count(elety)
+var <- arrange(var, desc(n))
+loopvar<-var[1,]
+tocluster[i,]<- data.frame(i,loopvar)}
+
+}
+
+
+```
+
+## Clustering
+
+a
+
+```{r Clustering}
+
+clusters<-kmeans(tocluster,5)
+
+
+```
+
+
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
